@@ -1,6 +1,7 @@
 using client_app_backend.Configuration;
 using client_app_backend.Configuration.Layers;
 using client_app_backend.Core.Support.Middleware;
+using client_app_backend.Core.Support.Workers;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -19,6 +20,9 @@ services.AddRepositoryConfiguration();
 services.AddIntegrationConfiguration();
 
 services.AddWebSecurityConfiguration();
+
+services.AddHostedService<PSGCoreListener>();
+services.AddHostedService<MockMessage>();
 
 var app = builder.Build();
 

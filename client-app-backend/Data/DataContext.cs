@@ -1,23 +1,38 @@
 ﻿namespace client_app_backend.Data
 {
-    using client_app_backend.Data.Interface;
-    using MongoDB.Driver;
+    using client_app_backend.Core.Models;
+    using Microsoft.EntityFrameworkCore;
+    using Newtonsoft.Json;
 
-    public class MongoDataContext : IConnection<IMongoDatabase>
+    public class DataContext : DbContext
     {
-        private MongoClient _client;
-
-        private string DataBaseName;
-
-        public MongoDataContext(IConfiguration configuration)
+        public DataContext(DbContextOptions<DataContext> options)
+            : base(options)
         {
-            _client = new MongoClient(configuration.GetValue<string>("Databases:Mongo:ConnectionString"));
-            DataBaseName = configuration.GetValue<string>("Databases:Mongo:Database");
         }
 
-        public IMongoDatabase GetConnection()
+        public DbSet<Survey> Survey { get; set; }
+
+        public DbSet<User> User { get; set; }
+
+        /// <summary>
+        ///     Se utiliza para la construccion de los modelos con Entity Framework.
+        ///     Esta estrategia es mas conocida como fluent api, y la utilizo solamente cuando
+        ///     no existen anotaciones para funciones especificas que se pueden logran con dicha 
+        ///     estrategia.
+        /// </summary>
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            return _client.GetDatabase(DataBaseName);
+            modelBuilder.Entity<User>()
+                .HasIndex(b => b.Email)
+                .IsUnique();
+
+            modelBuilder.Entity<Survey>()
+               .Property(b => b.OptionList)
+               .HasConversion(
+                    v => JsonConvert.SerializeObject(v),
+                    v => JsonConvert.DeserializeObject<List<string>>(v)
+                );
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿namespace client_app_backend.Core.DataTransferObjects
 {
-    using client_app_backend.Core.Enums;
     using client_app_backend.Core.Models;
 
     public class SurveyDTO
@@ -13,9 +12,9 @@
 
         public DateTime EndDate { get; set; }
 
-        public List<string> OptionList { get; set; }
+        public List<string> OptionsList { get; set; }
 
-        public SurveyOptionType OptionType { get; set; }
+        public string OptionType { get; set; }
 
         public SurveyDTO() { }
 
@@ -25,8 +24,13 @@
             CreationDate = surveyEntity.CreationDate;
             StartDate = surveyEntity.StartDate;
             EndDate = surveyEntity.EndDate;
-            OptionList = surveyEntity.OptionList;
+            OptionsList = surveyEntity.OptionsList;
             OptionType = surveyEntity.OptionType;
+        }
+
+        public Survey ToEntity()
+        {
+            return new Survey(this);
         }
     }
 }

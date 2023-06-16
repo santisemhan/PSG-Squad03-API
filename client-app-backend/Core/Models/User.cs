@@ -7,8 +7,6 @@
     public class User
     {
         [Key]
-        public string Id { get; set; }
-
         public string Email { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]

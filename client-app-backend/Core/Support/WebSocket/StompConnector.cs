@@ -3,7 +3,7 @@
     using Netina.Stomp.Client;
     using Netina.Stomp.Client.Interfaces;
     using Netina.Stomp.Client.Messages;
-    using System.Reflection.PortableExecutable;
+    using Newtonsoft.Json;
 
     public class StompConnector
     {
@@ -37,6 +37,12 @@
         public async Task SendAsync(object body, string destination)
         {
             await _clientStomp.SendAsync(body, destination, new Dictionary<string, string>());
+        }
+
+        public static T GetParsedContent<T>(StompMessage message)
+        {
+            var deserializedMessage = JsonConvert.DeserializeObject<Dictionary<string, string>>(message.Body);
+            return JsonConvert.DeserializeObject<T>(deserializedMessage["content"]);
         }
     }
 }

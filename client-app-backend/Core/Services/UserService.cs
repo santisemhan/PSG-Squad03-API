@@ -16,7 +16,7 @@
         public async Task<BalanceDTO> GetBalance(string email)
         {
             var user = await _userRepository.Get(email);
-            return new BalanceDTO(user == null ? 0 : user.Balance);
+            return new BalanceDTO(email, user == null ? 0 : user.Balance);
         }
 
         public async Task UpdateBalance(string email, decimal balance)

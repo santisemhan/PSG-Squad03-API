@@ -42,10 +42,24 @@
         [Route("survey/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SurveyDTO))]
 
-        public async Task<IActionResult> GetSurvey([FromRoute] string id)
+        public async Task<IActionResult> GetSurvey([FromRoute] Guid id)
         {
             var survey = await _surveyService.GetSurvey(id);
             return Ok(survey);
+        }
+
+        /// <summary>
+        /// Vote a survey
+        /// </summary>
+        /// <response code="204">Survey voted.</response>
+        /// <response code="404">No survey or user was found.</response>
+        /// <response code="500">An unexpected error occurred.</response>
+        [HttpPost]
+        [Route("vote")]
+        public async Task<IActionResult> VoteSurvey([FromBody] VoteSurveyDTO vote)
+        {
+            await _surveyService.VoteSurvey(vote);
+            return NoContent();
         }
     }
 }

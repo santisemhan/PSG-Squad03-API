@@ -1,13 +1,14 @@
 ﻿namespace client_app_backend.Core.Models
 {
     using client_app_backend.Core.DataTransferObjects;
-    using client_app_backend.Core.Enums;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Survey
     {
         [Key]
-        public string Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
 
         public string Question { get; set; }
 
@@ -17,9 +18,10 @@
 
         public DateTime EndDate { get; set; }
 
-        public List<string> OptionList { get; set; }
+        public List<string> OptionsList { get; set; }
 
-        public SurveyOptionType OptionType { get; set; }
+        [RegularExpression("^(SingleOption|MultipleOption)$")]
+        public string OptionType { get; set; }
 
         public SurveyDTO ToDTO()
         {
@@ -34,7 +36,7 @@
             CreationDate = dto.CreationDate;
             StartDate = dto.StartDate;
             EndDate = dto.EndDate;
-            OptionList = dto.OptionList;
+            OptionsList = dto.OptionsList;
             OptionType = dto.OptionType;
         }
     }

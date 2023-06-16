@@ -23,12 +23,8 @@
         /// </summary>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-                .HasIndex(b => b.Email)
-                .IsUnique();
-
             modelBuilder.Entity<Survey>()
-               .Property(b => b.OptionList)
+               .Property(b => b.OptionsList)
                .HasConversion(
                     v => JsonConvert.SerializeObject(v),
                     v => JsonConvert.DeserializeObject<List<string>>(v)

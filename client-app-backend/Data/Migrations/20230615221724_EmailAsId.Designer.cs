@@ -12,8 +12,8 @@ using client_app_backend.Data;
 namespace client_app_backend.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230614013447_InitDataBase")]
-    partial class InitDataBase
+    [Migration("20230615221724_EmailAsId")]
+    partial class EmailAsId
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,8 +26,9 @@ namespace client_app_backend.Data.Migrations
 
             modelBuilder.Entity("client_app_backend.Core.Models.Survey", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
@@ -35,12 +36,13 @@ namespace client_app_backend.Data.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("OptionList")
+                    b.Property<string>("OptionType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OptionType")
-                        .HasColumnType("int");
+                    b.Property<string>("OptionsList")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Question")
                         .IsRequired()
@@ -56,20 +58,13 @@ namespace client_app_backend.Data.Migrations
 
             modelBuilder.Entity("client_app_backend.Core.Models.User", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal>("Balance")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
+                    b.HasKey("Email");
 
                     b.ToTable("User");
                 });

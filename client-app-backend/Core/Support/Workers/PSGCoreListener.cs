@@ -25,28 +25,9 @@
         {
             _ = Task.Run(async () => {
                 await _stompClient.ConnectAsync();
-                await ListenUser();
                 await ListenBackOffice();
                 await ListenTrading();
             }, stoppingToken);
-        }
-
-        private async Task ListenUser()
-        {
-            await _stompClient.ListenAsync("/topic/users", async (sender, message) =>
-            {
-                try
-                {
-                    using (var scope = _serviceScopeFactory.CreateScope())
-                    {
-                        var content = StompConnector.GetParsedContent<PSGCoreMessageDTO>(message);
-                    }
-                }
-                catch(Exception e)
-                {
-                    Console.WriteLine(e);
-                }
-            });
         }
 
         private async Task ListenBackOffice()

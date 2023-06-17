@@ -4,11 +4,9 @@
     {
         public Guid SurveyId { get; set; }
 
-        public string Answer { get; set; }
+        public List<string> Answer { get; set; }
 
         public string Email { get; set; }
-
-        public string Dni { get; set; }
 
         public decimal VoteQuantity { get; set; }
 
@@ -19,7 +17,6 @@
             SurveyId = vote.SurveyId;
             Answer = vote.Answer;
             Email = vote.Email;
-            Dni = vote.Dni;
             VoteQuantity = balance;
         }
     }

@@ -23,6 +23,8 @@
         [RegularExpression("^(SingleOption|MultipleOption)$")]
         public string OptionType { get; set; }
 
+        public List<User> VotedUsers { get; set; } = new List<User>();
+
         public SurveyDTO ToDTO()
         {
             return new SurveyDTO(this);

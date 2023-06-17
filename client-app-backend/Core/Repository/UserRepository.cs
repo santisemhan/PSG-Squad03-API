@@ -18,6 +18,7 @@
         public async Task<User?> Get(string email)
         {
             return await _dbContext.User
+                .Include(user => user.VotedSurveys)
                 .FirstOrDefaultAsync(user => user.Email == email);
         }
 

@@ -12,6 +12,8 @@
         [Column(TypeName = "decimal(18,2)")]
         public decimal Balance { get; set; }
 
+        public List<Survey> VotedSurveys { get; set; } = new List<Survey>();
+
         private User() { }
 
         public User(string email, decimal balance)

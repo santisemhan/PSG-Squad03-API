@@ -1,10 +1,18 @@
 using client_app_backend.Configuration;
 using client_app_backend.Configuration.Layers;
 using client_app_backend.Core.Support.Middleware;
+using client_app_backend.Core.Support.Workers;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 var services = builder.Services;
+
+services.AddLogging(loggingBuilder =>
+{
+    loggingBuilder.AddConsole().AddFilter(DbLoggerCategory.Database.Command.Name, LogLevel.Information);
+    loggingBuilder.AddDebug();
+});
 
 services.AddDatabaseConfiguration(configuration);
 
@@ -19,6 +27,9 @@ services.AddRepositoryConfiguration();
 services.AddIntegrationConfiguration();
 
 services.AddWebSecurityConfiguration();
+
+services.AddHostedService<PSGCoreListener>();
+services.AddHostedService<MockMessage>();
 
 var app = builder.Build();
 

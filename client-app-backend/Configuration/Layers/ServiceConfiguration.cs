@@ -8,6 +8,8 @@
         public static IServiceCollection AddServiceConfiguration(this IServiceCollection services)
         {
             services.AddTransient<IPSGService, PSGService>();
+            services.AddTransient<ISurveyService, SurveyService>();
+            services.AddTransient<IUserService, UserService>();
             return services;
         }
     }

@@ -63,8 +63,11 @@
                     {
                         case "BUY_TOKEN":
                         case "SELL_TOKEN":
-                            var balance = JsonConvert.DeserializeObject<BalanceDTO>(content.Payload.Data.ToString());
-                            await userService.UpdateBalance(balance.Email, balance.Balance);
+                            var balanceResponse = JsonConvert.DeserializeObject<BalanceDTO>(content.Payload.Data.ToString());
+                            if(balanceResponse.Symbol.Trim().ToUpper() == "PSG")
+                            {
+                                await userService.UpdateBalance(balanceResponse.Email, balanceResponse.Balance);
+                            }
                             break;
                         default:
                             break;

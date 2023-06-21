@@ -67,7 +67,7 @@
             await _userRepository.Save();
 
             var balance = user == null ? 0 : user.Balance;
-            var message = new VoteSurveyMessageDTO(vote, balance);
+            var message = new VoteSurveyMessageDTO(vote, survey.Question, balance);
             var serializedMessage = JsonConvert.SerializeObject(message);
             await _stompClient.SendAsync($@"{{
                     'payload': {{

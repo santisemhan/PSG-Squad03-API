@@ -51,10 +51,13 @@
                 throw new Exception("You can't vote this survey because is expired or not exists.");
 
             if (vote.Answer.Count() <= 0)
-                throw new Exception("The answer is empty");
+                throw new Exception("The answer is empty.");
+
+            if(!vote.Answer.Any(item => survey.OptionsList.Contains(item)))
+                throw new Exception("Invalid answer.");
 
             if (survey.OptionType == "SingleOption" && vote.Answer.Count() != 1)
-                throw new Exception("The answer for this survey must be unique");
+                throw new Exception("The answer for this survey must be unique.");
             
             var user = await _userRepository.Get(vote.Email);
             if (user == null)

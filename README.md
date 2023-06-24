@@ -50,8 +50,9 @@ $ git clone https://github.com/santisemhan/PSG-Squad03-API.git
 
 ##  :zap: Infrastructure ##
 <div>
-  <img src="https://github.com/santisemhan/PSG-Squad03-API/assets/58712215/3d18efd1-fa65-4977-8780-7678da0a8527" width="900" alt="Infrastructure" />
+  <img src="https://github.com/santisemhan/PSG-Squad03-API/assets/58712215/89f3d1d0-aca5-4ec4-b799-c661169234cb" width="900" alt="Infrastructure" />
 </div>
 
 
 <br/>
+

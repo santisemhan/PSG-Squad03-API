@@ -4,7 +4,7 @@
     using client_app_backend.Core.Services.Interface;
     using Microsoft.AspNetCore.Mvc;
 
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class SurveyController : ControllerBase
     {

@@ -12,6 +12,8 @@
 
         public string Question { get; set; }
 
+        public string Owner { get; set; }
+
         public DateTime CreationDate { get; set; }
 
         public DateTime StartDate { get; set; }
@@ -35,6 +37,7 @@
         public Survey(SurveyDTO dto)
         {
             Question = dto.Question;
+            Owner = dto.Owner;
             CreationDate = dto.CreationDate;
             StartDate = dto.StartDate;
             EndDate = dto.EndDate;

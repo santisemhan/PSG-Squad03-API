@@ -4,6 +4,8 @@
 
     public class SurveyDTO
     {
+        public string Owner { get; set; }
+
         public string Question { get; set; }
 
         public DateTime CreationDate { get; set; }
@@ -20,6 +22,7 @@
 
         public SurveyDTO(Survey surveyEntity)
         {
+            Owner = surveyEntity.Owner;
             Question = surveyEntity.Question;
             CreationDate = surveyEntity.CreationDate;
             StartDate = surveyEntity.StartDate;

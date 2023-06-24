@@ -32,7 +32,7 @@
 This is a repository that contains the backend code for the PSG-Users microservice. Its goal is to provide public information about PSG, such as upcoming or past matches. It also subscribes to a topic using a WebSocket STOMP to receive and persist events and data from other microservices that are relevant to us.
  
 
-## :checkered_flag: Starting ##
+## :checkered_flag: Get Started ##
 
 ```bash
 # Clone this project

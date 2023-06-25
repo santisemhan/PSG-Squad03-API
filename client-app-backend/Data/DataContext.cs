@@ -24,6 +24,11 @@
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Survey>()
+                .Property(b => b.Id)
+                .IsRequired()
+                .ValueGeneratedNever();
+
+            modelBuilder.Entity<Survey>()
                .Property(b => b.OptionsList)
                .HasConversion(
                     v => JsonConvert.SerializeObject(v),

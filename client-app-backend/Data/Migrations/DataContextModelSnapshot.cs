@@ -24,9 +24,8 @@ namespace client_app_backend.Data.Migrations
 
             modelBuilder.Entity("client_app_backend.Core.Models.Survey", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
@@ -73,8 +72,8 @@ namespace client_app_backend.Data.Migrations
 
             modelBuilder.Entity("SurveyUser", b =>
                 {
-                    b.Property<Guid>("VotedSurveysId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("VotedSurveysId")
+                        .HasColumnType("int");
 
                     b.Property<string>("VotedUsersEmail")
                         .HasColumnType("nvarchar(450)");

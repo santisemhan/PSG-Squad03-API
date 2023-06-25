@@ -29,6 +29,7 @@ namespace client_app_backend.Core.Support.Workers
                   'payload': {
                       'operation': 'Survey Created',
                       'data': {
+                          'id': 25,
                           'owner': 'email@provider.com',
                           'question': 'Will PSG win this year?',
 	                      'creationDate': '2023-05-16T19:05:22.418Z',

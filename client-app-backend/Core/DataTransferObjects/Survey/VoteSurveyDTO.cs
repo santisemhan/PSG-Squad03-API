@@ -2,7 +2,7 @@
 {
     public class VoteSurveyDTO
     {
-        public Guid SurveyId { get; set; }
+        public int SurveyId { get; set; }
 
         public List<string> Answer { get; set; } = new List<string>();
 

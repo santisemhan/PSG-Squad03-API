@@ -2,7 +2,7 @@
 {
     public class VoteSurveyMessageDTO
     {
-        public Guid SurveyId { get; set; }
+        public int SurveyId { get; set; }
 
         public string Question { get; set; }
 

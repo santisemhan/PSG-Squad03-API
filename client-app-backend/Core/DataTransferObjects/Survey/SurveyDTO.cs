@@ -14,7 +14,7 @@
 
         public DateTime EndDate { get; set; }
 
-        public List<string> OptionsList { get; set; }
+        public string OptionsList { get; set; }
 
         public string OptionType { get; set; }
 
@@ -27,7 +27,7 @@
             CreationDate = surveyEntity.CreationDate;
             StartDate = surveyEntity.StartDate;
             EndDate = surveyEntity.EndDate;
-            OptionsList = surveyEntity.OptionsList;
+            OptionsList = string.Join(",", surveyEntity.OptionsList);
             OptionType = surveyEntity.OptionType;
         }
 

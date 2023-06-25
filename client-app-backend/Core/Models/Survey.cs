@@ -41,7 +41,7 @@
             CreationDate = dto.CreationDate;
             StartDate = dto.StartDate;
             EndDate = dto.EndDate;
-            OptionsList = dto.OptionsList;
+            OptionsList = dto.OptionsList.Split(",").ToList();
             OptionType = dto.OptionType;
         }
     }

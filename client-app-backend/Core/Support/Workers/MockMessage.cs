@@ -1,4 +1,4 @@
-﻿namespace client_app_backend.Core.Support.Workers
+namespace client_app_backend.Core.Support.Workers
 {
     using client_app_backend.Core.Support.WebSocket;
 
@@ -29,11 +29,12 @@
                   'payload': {
                       'operation': 'Survey Created',
                       'data': {
+                          'owner': 'email@provider.com',
                           'question': 'Will PSG win this year?',
 	                      'creationDate': '2023-05-16T19:05:22.418Z',
 	                      'startDate': '2022-11-13T04:00:00.000Z',
 	                      'endDate': '2023-11-12T03:00:00.000Z',
-	                      'optionsList': ['Yes', 'No', 'Maybe'],
+	                      'optionsList': 'Yes,No,Maybe',
 	                      'optionType': 'SingleOption'
                       }
                   },

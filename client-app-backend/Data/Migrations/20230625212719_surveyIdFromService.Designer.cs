@@ -12,8 +12,8 @@ using client_app_backend.Data;
 namespace client_app_backend.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230615221724_EmailAsId")]
-    partial class EmailAsId
+    [Migration("20230625212719_surveyIdFromService")]
+    partial class surveyIdFromService
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,9 +26,8 @@ namespace client_app_backend.Data.Migrations
 
             modelBuilder.Entity("client_app_backend.Core.Models.Survey", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
@@ -41,6 +40,10 @@ namespace client_app_backend.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OptionsList")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Owner")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -67,6 +70,36 @@ namespace client_app_backend.Data.Migrations
                     b.HasKey("Email");
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("SurveyUser", b =>
+                {
+                    b.Property<int>("VotedSurveysId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("VotedUsersEmail")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("VotedSurveysId", "VotedUsersEmail");
+
+                    b.HasIndex("VotedUsersEmail");
+
+                    b.ToTable("SurveyUser");
+                });
+
+            modelBuilder.Entity("SurveyUser", b =>
+                {
+                    b.HasOne("client_app_backend.Core.Models.Survey", null)
+                        .WithMany()
+                        .HasForeignKey("VotedSurveysId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("client_app_backend.Core.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("VotedUsersEmail")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

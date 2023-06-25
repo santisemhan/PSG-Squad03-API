@@ -17,7 +17,7 @@
             _dbContext = dbContext;
         }
 
-        public async Task<Survey> Get(Guid id)
+        public async Task<Survey> Get(int id)
         {
             return await _dbContext.Survey
                 .SingleOrDefaultAsync(survey => survey.Id == id);

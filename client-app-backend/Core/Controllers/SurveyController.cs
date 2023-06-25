@@ -42,7 +42,7 @@
         [Route("survey/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SurveyDTO))]
 
-        public async Task<IActionResult> GetSurvey([FromRoute] Guid id)
+        public async Task<IActionResult> GetSurvey([FromRoute] int id)
         {
             var survey = await _surveyService.GetSurvey(id);
             return Ok(survey);

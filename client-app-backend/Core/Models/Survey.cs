@@ -2,13 +2,11 @@
 {
     using client_app_backend.Core.DataTransferObjects;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Survey
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public string Question { get; set; }
 
@@ -36,6 +34,7 @@
 
         public Survey(SurveyDTO dto)
         {
+            Id = dto.Id;
             Question = dto.Question;
             Owner = dto.Owner;
             CreationDate = dto.CreationDate;

@@ -4,6 +4,8 @@
 
     public class SurveyDTO
     {
+        public int Id { get;set; }
+
         public string Owner { get; set; }
 
         public string Question { get; set; }
@@ -22,6 +24,7 @@
 
         public SurveyDTO(Survey surveyEntity)
         {
+            Id = surveyEntity.Id;
             Owner = surveyEntity.Owner;
             Question = surveyEntity.Question;
             CreationDate = surveyEntity.CreationDate;

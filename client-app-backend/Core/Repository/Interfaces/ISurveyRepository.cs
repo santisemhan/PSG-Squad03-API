@@ -7,7 +7,7 @@
     {
         Task<List<Survey>> Get();
 
-        Task<Survey> Get(Guid id);
+        Task<Survey> Get(int id);
 
         Task Add(SurveyDTO survey);
 

@@ -31,7 +31,7 @@
                 .ToList();
         }
 
-        public async Task<SurveyDTO> GetSurvey(Guid id)
+        public async Task<SurveyDTO> GetSurvey(int id)
         {
             var survey = await _surveyRepository.Get(id);
             return survey.ToDTO();
